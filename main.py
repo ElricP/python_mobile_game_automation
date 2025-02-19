@@ -671,6 +671,7 @@ def clearable_section_grinder(clearable_type):
             ok_button = cv2.imread('images/needles/ok.png', cv2.IMREAD_COLOR)
             optional_click_patient(ok_button, 'ok button', 20)
             random_sleep(1)
+        random_sleep(2)
         reward_claim()
         scroll('up')
         # scroll('up')
@@ -851,12 +852,14 @@ def arena_battle_single():
     battle_small = cv2.imread('images/needles/battle_button_small.png', cv2.IMREAD_COLOR)
     proceed = cv2.imread('images/needles/proceed.png', cv2.IMREAD_COLOR)
     beginner = cv2.imread('images/needles/coliseum/arena/beginner.png', cv2.IMREAD_COLOR)
+    # restore = cv2.imread('images/needles/stamina_restore.png', cv2.IMREAD_COLOR)
     # send_friend_request = cv2.imread('images/needles/send.png', cv2.IMREAD_COLOR)
     send_friend_request = cv2.imread('images/needles/dont_send.png', cv2.IMREAD_COLOR)
     ok = cv2.imread('images/needles/ok.png', cv2.IMREAD_COLOR)
     button_click_patient(battle_big, 'big battle button', 5)
     stamina_back = cv2.imread('images/needles/back.PNG', cv2.IMREAD_COLOR)
     if optional_click_patient(stamina_back, 'stamina_back', 5) == 'hit':
+        # button_click(restore, 'stamina restore button')
         print_and_log('exhausted during arena')
         return 'exhausted'
     button_click_patient(proceed, 'proceed', 5)
@@ -1087,6 +1090,21 @@ def summoner_duels_grinder(rounds=20):
         random_sleep_extra(6)
     return 0
 
+def single_arena_assault():
+    battle_small = cv2.imread('images/needles/battle_button_small.png', cv2.IMREAD_COLOR)
+    beginner = cv2.imread('images/needles/coliseum/arena/beginner.png', cv2.IMREAD_COLOR)
+    button_click_patient(beginner, 'beginner', 5)
+    button_click_patient(battle_small, 'battle_small', 5)
+    random_sleep(5)
+    fight_button = cv2.imread('images/needles/fight.PNG', cv2.IMREAD_COLOR)
+    button_click(fight_button, 'fight')
+    random_sleep(5)
+    highest_button_click_patient(fight_button, 'fight button', 3)
+    auto_battle_helper()
+    battle_watch_helper()
+    reward_claim()
+
+
 
 # Automation starts here (main)
 # Connect to device, adb host and port number is static
@@ -1108,17 +1126,16 @@ device = devices[0]
 # back_arrow_helper(2)
 # daily_routine()
 # arena_grinder()
-# auto_battle_helper()
-# battle_watch_helper()
-# reward_claim()
-# tap_battle_grinder()
 
+# tap_battle_grinder()
+#
 while True:
-    # tempest_trial_grinder(35, 9)
-    forging_bonds_grinder(20)
-    # clearable_book_grinder()
-    # training_grinder(9)
-    # heroes_journey_grinder(9)
+    # single_arena_assault()
+    tempest_trial_grinder(35, 9)
+#     forging_bonds_grinder(20)
+#     clearable_book_grinder()
+#     training_grinder(1)
+#     heroes_journey_grinder(9)
     random_sleep(3600 * 4)
 # heroes_journey_grinder()
 # select_stage = cv2.imread('images/needles/select_stage.png', cv2.IMREAD_COLOR)
